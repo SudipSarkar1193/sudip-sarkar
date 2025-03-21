@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import myDescription from "./sudip.json";
+import { ImCross } from "react-icons/im";
 
 const Chat = ({ isChatOpen, setIsChatOpen }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
-  
+
   const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
   const myFullName = "Sudip Sarkar";
 
@@ -89,20 +90,23 @@ const Chat = ({ isChatOpen, setIsChatOpen }) => {
       <div className="bg-white dark:bg-gray-800 w-full max-w-md md:h-[75vh] h-full z-50 rounded-lg shadow-2xl flex flex-col animate-fadeIn">
         {/* Chat Header */}
         <div className="bg-blue-500 dark:bg-blue-600 text-white p-4 rounded-t-lg flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Chat with Me</h3>
-          <button
-            onClick={() => setIsChatOpen(false)}
-            className="text-white hover:text-gray-200 focus:outline-none"
-          >
-            ✖
+          <h3 className="text-lg font-semibold">Chat with Sudip</h3>
+          <button onClick={() => setIsChatOpen(false)} className="">
+            <ImCross size={25} />
           </button>
         </div>
 
         {/* Messages Area */}
         <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-gray-100 dark:bg-gray-900">
           {messages.map((msg, index) => (
-            <div key={index} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
-              <div className={`max-w-xs p-3 rounded-lg italic font-semibold dark:font-normal ${
+            <div
+              key={index}
+              className={`flex ${
+                msg.sender === "user" ? "justify-end" : "justify-start"
+              }`}
+            >
+              <div
+                className={`max-w-xs p-3 rounded-lg italic font-semibold dark:font-normal ${
                   msg.sender === "user"
                     ? "bg-blue-500 text-white dark:bg-blue-900"
                     : "bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white"
