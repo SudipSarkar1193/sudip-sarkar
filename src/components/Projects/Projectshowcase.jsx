@@ -68,6 +68,9 @@ const ProjectShowcase = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-white text-indigo-600 px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 dark:bg-gray-800 dark:text-white"
+            onClick={() => {
+              window.open(projectData.link, "_blank", "noopener,noreferrer");
+            }}
           >
             View Live Demo
           </motion.button>

@@ -1,71 +1,77 @@
 [
-    {
-      "title": "Social Media App",
-      "tagline": "Connect, Share, and Engage",
-      "description": "A social media platform with authentication, real-time updates, and interactive features. Built with modern web technologies to enhance user experience.",
-      "features": [
-        "User authentication and authorization",
-        "Real-time chat and notifications",
-        "Post creation with media uploads",
-        "Follow/unfollow system"
-      ],
-      "techStack": ["React", "Node.js", "MongoDB", "WebSocket", "Firebase"],
-      "images": [
-        "/images/social-media-app-1.png",
-        "/images/social-media-app-2.png",
-        "/images/social-media-app-3.png"
-      ]
-    },
-    {
-      "title": "E-commerce Website",
-      "tagline": "Seamless Shopping Experience",
-      "description": "A fully functional e-commerce website with a cart system, secure payment integration, and product management.",
-      "features": [
-        "Product browsing and filtering",
-        "Shopping cart and checkout system",
-        "Secure payment integration",
-        "Admin dashboard for inventory management"
-      ],
-      "techStack": ["React", "Next.js", "Node.js", "Stripe", "MongoDB"],
-      "images": [
-        "/images/ecommerce-1.png",
-        "/images/ecommerce-2.png",
-        "/images/ecommerce-3.png"
-      ]
-    },
-    {
-      "title": "Portfolio Website",
-      "tagline": "Showcase Your Work in Style",
-      "description": "A modern personal portfolio website built with React and Tailwind, designed for developers and designers to showcase their work.",
-      "features": [
-        "Interactive project showcase",
-        "Responsive design with animations",
-        "Contact form with email integration",
-        "SEO optimized structure"
-      ],
-      "techStack": ["React", "Tailwind CSS", "Framer Motion", "Vite"],
-      "images": [
-        "/images/portfolio-1.png",
-        "/images/portfolio-2.png",
-        "/images/portfolio-3.png"
-      ]
-    },
-    {
-      "title": "Database Management System",
-      "tagline": "Optimized Data Handling",
-      "description": "A robust database management system built with SQL and MongoDB for efficient data storage and retrieval.",
-      "features": [
-        "Advanced querying capabilities",
-        "Data indexing and performance optimization",
-        "User access control and permissions",
-        "Backup and restore functionality"
-      ],
-      "techStack": ["SQL", "MongoDB", "Node.js", "Express"],
-      "images": [
-        "/images/dbms-1.png",
-        "/images/dbms-2.png",
-        "/images/dbms-3.png"
-      ]
-    }
-  ]
-  
+  {
+    "title": "TryYourGyan",
+    "tagline": "Generate, Play, and Share Quizzes",
+    "description": "An interactive quiz generation platform where users can input any topic, generate quizzes, and share them with others. Features authentication, profile customization, and real-time quiz participation.",
+    "link": "https://try-your-gyan.vercel.app",
+    "features": [
+      "User authentication with Google and classic email OTP verification",
+      "AI-powered quiz generation based on user input",
+      "Quiz participation and result tracking",
+      "Quiz sharing via links",
+      "User profile customization (profile picture, email, bio, etc.)",
+      "Quiz history section to revisit previously played quizzes"
+    ],
+    "techStack": [
+      "React",
+      "JavaScript",
+      "Tailwind CSS",
+      "CSS",
+      "Golang",
+      "PostgreSQL",
+      "Firebase"
+    ],
+    "images": [
+      "/images/tryyourgan-1.png",
+      "/images/tryyourgan-2.png",
+      "/images/tryyourgan-3.png"
+    ]
+  },
+  {
+    "title": "E-commerce Website",
+    "tagline": "Seamless Shopping Experience",
+    "description": "A fully functional e-commerce website with a cart system, secure payment integration, and product management.",
+    "features": [
+      "Product browsing and filtering",
+      "Shopping cart and checkout system",
+      "Secure payment integration",
+      "Admin dashboard for inventory management"
+    ],
+    "techStack": ["React", "Next.js", "Node.js", "Stripe", "MongoDB"],
+    "images": [
+      "/images/ecommerce-1.png",
+      "/images/ecommerce-2.png",
+      "/images/ecommerce-3.png"
+    ]
+  },
+  {
+    "title": "Portfolio Website",
+    "tagline": "Showcase Your Work in Style",
+    "description": "A modern personal portfolio website built with React and Tailwind, designed for developers and designers to showcase their work.",
+    "features": [
+      "Interactive project showcase",
+      "Responsive design with animations",
+      "Contact form with email integration",
+      "SEO optimized structure"
+    ],
+    "techStack": ["React", "Tailwind CSS", "Framer Motion", "Vite"],
+    "images": [
+      "/images/portfolio-1.png",
+      "/images/portfolio-2.png",
+      "/images/portfolio-3.png"
+    ]
+  },
+  {
+    "title": "Database Management System",
+    "tagline": "Optimized Data Handling",
+    "description": "A robust database management system built with SQL and MongoDB for efficient data storage and retrieval.",
+    "features": [
+      "Advanced querying capabilities",
+      "Data indexing and performance optimization",
+      "User access control and permissions",
+      "Backup and restore functionality"
+    ],
+    "techStack": ["SQL", "MongoDB", "Node.js", "Express"],
+    "images": ["/images/dbms-1.png", "/images/dbms-2.png", "/images/dbms-3.png"]
+  }
+]
