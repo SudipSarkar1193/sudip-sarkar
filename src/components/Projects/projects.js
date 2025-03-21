@@ -2,7 +2,7 @@ import { FaCode, FaDatabase } from "react-icons/fa";
 
 const projects = [
   {
-    name: "TryYourGAN",
+    name: "Try-Your-জ্ঞান",
     description:
       "An interactive quiz generation platform with authentication, real-time quiz participation, and a history section to revisit past quizzes.",
     image: "/images/tryyourgan.png",
