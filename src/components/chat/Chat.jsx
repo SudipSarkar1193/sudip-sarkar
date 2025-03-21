@@ -85,7 +85,7 @@ const Chat = ({ isChatOpen, setIsChatOpen }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-end  md:p-4">
+    <div className="fixed inset-0 flex items-center z-30 justify-end  md:p-4">
       <div className="bg-white dark:bg-gray-800 w-full max-w-md md:h-[75vh] h-full z-50 rounded-lg shadow-2xl flex flex-col animate-fadeIn">
         {/* Chat Header */}
         <div className="bg-blue-500 dark:bg-blue-600 text-white p-4 rounded-t-lg flex items-center justify-between">
