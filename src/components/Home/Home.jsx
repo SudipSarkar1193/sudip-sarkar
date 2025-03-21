@@ -7,7 +7,8 @@ import Chat from "../chat/Chat";
 import Header from "../Header/Header";
 import Herosection from "../Herosection/Herosection";
 import About from "../About/About";
-import ContactSection from "../contact/contactSection";
+import { Contact } from "../contact/Contact";
+
 
 const profilePic = "/icons/sudip01.jpg";
 function Home() {
@@ -34,7 +35,7 @@ function Home() {
       <ProjectsSection />
 
       {/* Contact Section */}
-      <ContactSection />
+      <Contact />
 
       {/* Chat Bubble */}
       <div
