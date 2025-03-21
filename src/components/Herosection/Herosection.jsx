@@ -11,7 +11,7 @@ const Herosection = ({ profilePic }) => {
             <img
               src={profilePic}
               alt="Profile Picture"
-              className="w-46 h-46 md:w-56 md:h-56 md:w-40 md:h-40 rounded-full border-4 border-white shadow-lg mb-4 md:mb-2"
+              className="w-46 h-46 md:w-56 md:h-56 rounded-full border-4 border-white shadow-lg mb-4 md:mb-2"
             />
           </div>
 
