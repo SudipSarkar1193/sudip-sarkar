@@ -3,11 +3,15 @@ import "./FloatingIcons.css";
 
 const cIcon = "/icons/1553099_blue_c_letter_alphabet_letters_icon.png";
 const cppIcon = "/icons/7564189_c_logo_plus plus_plus_+ +_icon.png";
-const goIcon = "/icons/8666226_golang_icon.png";
+const goIcon =
+  "https://res.cloudinary.com/dvsutdpx2/image/upload/v1742743407/rlhqksnnj1ndjfv9qxb9.png";
 const reactIcon = "/icons/1174949_js_react js_logo_react_react native_icon.png";
-const jsIcon = "/icons/652581_code_command_develop_javascript_language_icon.png";
-const pythonIcon = "/icons/4518857_python_icon.png";
-const javaIcon = "/icons/4373217_java_logo_logos_icon.png";
+const jsIcon =
+  "/icons/652581_code_command_develop_javascript_language_icon.png";
+const pythonIcon =
+  "https://res.cloudinary.com/dvsutdpx2/image/upload/v1742743408/ywg74hajrrmt6uaztxoi.png";
+const javaIcon =
+  "https://res.cloudinary.com/dvsutdpx2/image/upload/v1742743408/ct7w70vs76xthgyotqpw.png";
 
 const icons = [cppIcon, cIcon, goIcon, reactIcon, jsIcon, pythonIcon, javaIcon];
 
@@ -51,11 +55,12 @@ const FloatingIcons = () => {
           img.style.width = `${iconSize}px`;
           img.style.height = `${iconSize}px`;
 
-          // Initial position 
+          // Initial position
           const x = Math.random() * (window.innerWidth - iconSize);
           const y =
             headerHeightRef.current +
-            Math.random() * (window.innerHeight - headerHeightRef.current - iconSize); //(start below header)
+            Math.random() *
+              (window.innerHeight - headerHeightRef.current - iconSize); //(start below header)
           img.style.left = `${x}px`;
           img.style.top = `${y}px`;
 
@@ -128,7 +133,12 @@ const FloatingIcons = () => {
     };
   }, []);
 
-  return <div ref={containerRef} className="floating-icons-container bg-gray-200 dark:bg-gray-800"></div>;
+  return (
+    <div
+      ref={containerRef}
+      className="floating-icons-container bg-gray-200 dark:bg-gray-800"
+    ></div>
+  );
 };
 
 export default FloatingIcons;
