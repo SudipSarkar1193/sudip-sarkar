@@ -18,7 +18,7 @@ const Herosection = ({ profilePic }) => {
           {/* Right Side - Text */}
           <div className="md:w-2/3 mt-6 md:mt-0 md:pl-12 text-center">
             <h2 className="text-4xl md:text-5xl font-extrabold">
-              Welcome to My Portfolio
+              Welcome to Sudip-Verse
             </h2>
             <p className="mt-4 text-lg md:text-xl">
               I’m a passionate developer building modern solutions.

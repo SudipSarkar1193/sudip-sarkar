@@ -6,9 +6,10 @@ import Home from "./components/Home/Home";
 import FloatingIcons from "./components/FloatingIcons/FloatingIcons";
 import ProjectShowcase from "./components/Projects/Projectshowcase";
 
-
-
 function App() {
+  useEffect(() => {
+    document.body.classList.add("dark");
+  }, []);
   return (
     <div className="min-h-screen overflow-x-hidden ">
       <FloatingIcons />

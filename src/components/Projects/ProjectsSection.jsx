@@ -9,6 +9,7 @@ export default function ProjectsSection() {
         <h3 className="text-4xl font-extrabold text-gray-800 dark:text-gray-100 mb-10 text-center">
           Projects
         </h3>
+        <h3 classNAme="text-2xl font-extrabold text-gray-800 dark:text-gray-100 mb-10">Personal Projects</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <Link key={index} to={`/projects/${index}`}>
