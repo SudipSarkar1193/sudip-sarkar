@@ -20,8 +20,8 @@ function Home() {
 
   const aboutParagraphs = [
     "I'm Sudip Sarkar, a third-year Computer Science undergraduate at the Academy of Technology, deeply passionate about backend development and system design.",
-    "I specialize in Golang, drawn by its performance and robust concurrency support. I'm also proficient in JavaScript and work extensively with databases such as MongoDB, PostgreSQL, and SQL. While I have experience with frontend technologies like React and Tailwind CSS, my primary focus remains on building scalable and efficient backend systems. I'm currently exploring AI integration using tools like LangChain to develop intelligent backend solutions.",
-    "I'm highly enthusiastic about Data Structures and Algorithms and enjoy solving complex problems. I code primarily in C++, but I also work with Java and Python.",
+    "I specialize in Golang, drawn by its performance and robust concurrency support. I'm also proficient in JavaScript and work extensively with databases such as MongoDB, PostgreSQL, and SQL.\n While I have experience with frontend technologies like React and Tailwind CSS, my primary focus remains on building scalable and efficient backend systems.\n I'm currently exploring AI integration using tools like LangChain to develop intelligent backend solutions.",
+    "I'm highly enthusiastic about DSA and problem solving.\n For DSA, I use primarily C++, but I also use Java and Python.",
   ];
 
   const scrollTriggers = [
@@ -79,10 +79,10 @@ function Home() {
       const chars = paragraph.querySelectorAll(".char");
       const config = scrollTriggers[index];
 
-      // Calculating dynamic timeout based on word count
+      // Calculate dynamic timeout based on word count
       const wordCount = aboutParagraphs[index].split(" ").length;
-      const baseTime = 3; // Minimum time in seconds
-      const timePerWord = 0.2; // Additional time per word (adjustable)
+      const baseTime = 3;
+      const timePerWord = 0.2;
       const dynamicDelay = baseTime + wordCount * timePerWord;
 
       // Set initial states
@@ -124,7 +124,7 @@ function Home() {
             duration: 1,
             ease: "power2.inOut",
           },
-          `+=${dynamicDelay}` 
+          `+=${dynamicDelay}`
         )
         .to(
           paragraph,
@@ -150,10 +150,31 @@ function Home() {
         onEnter: () => tl.restart(),
       });
 
+      // Pause on hover
+      // section.addEventListener("mouseenter", () => tl.pause());
+      // section.addEventListener("mouseleave", () => tl.resume());
+
+      const togglePause = () => {
+        if (tl.paused()) {
+          tl.resume();
+        } else {
+          tl.pause();
+        }
+      };
+      // Pause on touch
+      section.addEventListener("click", togglePause);
+      section.addEventListener("touchstart", togglePause);
+
       triggers.push(trigger);
     });
 
     return () => {
+      sectionRefs.current.forEach((section) => {
+        if (section) {
+          section.removeEventListener("mouseenter", () => {});
+          section.removeEventListener("mouseleave", () => {});
+        }
+      });
       triggers.forEach((trigger) => trigger.kill());
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
@@ -167,21 +188,32 @@ function Home() {
     >
       <div className="mx-auto my-9 px-4 sm:px-6 lg:px-20">
         <p className="reveal-section my-0 text-black font-semibold italic dark:text-gray-300 dark:font-normal text-lg md:text-xl lg:text-2xl text-center leading-relaxed rounded-xl p-6 glow-bg">
-          {text.split(" ").map((word, wordIndex) => (
+          {text.split("\n").map((line, lineIndex) => (
             <span
-              key={wordIndex}
-              style={{ whiteSpace: "nowrap", display: "inline-block" }}
+              key={lineIndex}
+              style={{
+                display: "block",
+                marginBottom:
+                  lineIndex < text.split("\n").length - 1 ? "1rem" : "0",
+              }}
             >
-              {word.split("").map((char, charIndex) => (
+              {line.split(" ").map((word, wordIndex) => (
                 <span
-                  key={charIndex}
-                  style={{ opacity: 0, display: "inline-block" }}
-                  className="char"
+                  key={wordIndex}
+                  style={{ whiteSpace: "nowrap", display: "inline-block" }}
                 >
-                  {char === " " ? "\u00A0" : char}
+                  {word.split("").map((char, charIndex) => (
+                    <span
+                      key={charIndex}
+                      style={{ opacity: 0, display: "inline-block" }}
+                      className="char"
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </span>
+                  ))}
+                  {wordIndex < line.split(" ").length - 1 && "\u00A0"}
                 </span>
               ))}
-              {wordIndex < text.split(" ").length - 1 && "\u00A0"}
             </span>
           ))}
         </p>

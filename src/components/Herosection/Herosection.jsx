@@ -1,9 +1,11 @@
 import React from "react";
 
-
 const Herosection = ({ profilePic }) => {
   return (
-    <section className="pt-24 pb-12 w-full bg-gradient-to-r from-blue-500/90 to-indigo-600/90 dark:from-indigo-900/70 dark:to-blue-900/70 text-white">
+    <section
+      id="about"
+      className="pt-24 pb-12 w-full bg-gradient-to-r from-blue-500/90 to-indigo-600/90 dark:from-indigo-900/70 dark:to-blue-900/70 text-white"
+    >
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left">
           {/* Left Side - Profile */}
@@ -23,7 +25,6 @@ const Herosection = ({ profilePic }) => {
             <p className="mt-4 text-lg md:text-xl">
               I’m a passionate developer building modern solutions.
             </p>
-          
           </div>
         </div>
       </div>

@@ -50,7 +50,7 @@ const About = () => {
 
   return (
     <section
-      id="about"
+     
       className="py-16 bg-gray-200/50 dark:bg-gray-900/50 flex items-center"
       ref={ref}
     >
