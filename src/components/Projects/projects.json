@@ -25,7 +25,8 @@
       "/images/tryyourgan-1.png",
       "/images/tryyourgan-2.png",
       "/images/tryyourgan-3.png"
-    ]
+    ],
+    "type": "personal"
   },
   {
     "title": "E-commerce Website",
@@ -42,7 +43,8 @@
       "/images/ecommerce-1.png",
       "/images/ecommerce-2.png",
       "/images/ecommerce-3.png"
-    ]
+    ],
+    "type": "Group"
   },
   {
     "title": "Portfolio Website",
@@ -59,7 +61,8 @@
       "/images/portfolio-1.png",
       "/images/portfolio-2.png",
       "/images/portfolio-3.png"
-    ]
+    ],
+    "type": "personal"
   },
   {
     "title": "Database Management System",
@@ -72,6 +75,11 @@
       "Backup and restore functionality"
     ],
     "techStack": ["SQL", "MongoDB", "Node.js", "Express"],
-    "images": ["/images/dbms-1.png", "/images/dbms-2.png", "/images/dbms-3.png"]
+    "images": [
+      "/images/dbms-1.png",
+      "/images/dbms-2.png",
+      "/images/dbms-3.png"
+    ],
+    "type": "personal"
   }
 ]
