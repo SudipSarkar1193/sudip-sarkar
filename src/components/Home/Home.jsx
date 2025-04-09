@@ -154,16 +154,16 @@ function Home() {
       // section.addEventListener("mouseenter", () => tl.pause());
       // section.addEventListener("mouseleave", () => tl.resume());
 
-      const togglePause = () => {
-        if (tl.paused()) {
-          tl.resume();
-        } else {
-          tl.pause();
-        }
-      };
-      // Pause on touch
-      section.addEventListener("click", togglePause);
-      section.addEventListener("touchstart", togglePause);
+      // const togglePause = () => {
+      //   if (tl.paused()) {
+      //     tl.resume();
+      //   } else {
+      //     tl.pause();
+      //   }
+      // };
+      // // Pause on touch
+      // section.addEventListener("click", togglePause);
+      // section.addEventListener("touchstart", togglePause);
 
       triggers.push(trigger);
     });
