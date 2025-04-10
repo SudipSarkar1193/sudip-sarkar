@@ -12,3 +12,13 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
   
+
+  .glow-bg2 {
+    /* background-color: rgba(255, 255, 255, 0.05); */
+    box-shadow: 0 0 20px rgba(3, 220, 21, 0.3),
+                0 0 30px rgba(7, 11, 233, 0.3),
+                0 0 40px rgb(209, 9, 145,0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  
