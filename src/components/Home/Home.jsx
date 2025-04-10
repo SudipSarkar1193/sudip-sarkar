@@ -8,6 +8,8 @@ import Chat from "../chat/Chat";
 import Header from "../Header/Header";
 import Herosection from "../Herosection/Herosection";
 import { Contact } from "../contact/Contact";
+import { RiExpandDiagonalFill } from "react-icons/ri";
+import { ImShrink2 } from "react-icons/im";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,7 +20,11 @@ function Home() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [hasAnimated, setHasAnimated] = useState([false, false, false]); // Tracks section animation completion
   const [isVisible, setIsVisible] = useState([false, false, false]); // Controls visibility
-  const [hasButtonAnimated, setHasButtonAnimated] = useState([false, false, false]); // Tracks button animation completion
+  const [hasButtonAnimated, setHasButtonAnimated] = useState([
+    false,
+    false,
+    false,
+  ]); // Tracks button animation completion
   const myFullName = "Sudip Sarkar";
   const sectionRefs = useRef([]);
   const buttonRefs = useRef([]);
@@ -33,15 +39,24 @@ function Home() {
   const scrollTriggers = [
     {
       triggerSettings: { start: "top 80%", end: "bottom 20%" },
-      animationSettings: { from: { x: -100, opacity: 0 }, to: { x: 0, opacity: 1, duration: duration, ease: "power2.out" } },
+      animationSettings: {
+        from: { x: -100, opacity: 0 },
+        to: { x: 0, opacity: 1, duration: duration, ease: "power2.out" },
+      },
     },
     {
       triggerSettings: { start: "top 80%", end: "bottom 20%" },
-      animationSettings: { from: { y: 100, opacity: 0 }, to: { y: 0, opacity: 1, duration: duration / 4, ease: "power2.out" } },
+      animationSettings: {
+        from: { y: 100, opacity: 0 },
+        to: { y: 0, opacity: 1, duration: duration / 4, ease: "power2.out" },
+      },
     },
     {
       triggerSettings: { start: "top 80%", end: "bottom 20%" },
-      animationSettings: { from: { x: 100, opacity: 0 }, to: { x: 0, opacity: 1, duration: duration, ease: "power2.out" } },
+      animationSettings: {
+        from: { x: 100, opacity: 0 },
+        to: { x: 0, opacity: 1, duration: duration, ease: "power2.out" },
+      },
     },
   ];
 
@@ -70,7 +85,7 @@ function Home() {
       const wordCount = aboutParagraphs[index].split(" ").length;
       const baseTime = 3;
       const timePerWord = 0.2;
-      const dynamicDelay = baseTime + wordCount * timePerWord;
+      const dynamicDelay = (baseTime + wordCount * timePerWord) * 0.2;
 
       gsap.set(section, { height: 0, opacity: 0, overflow: "hidden" });
       gsap.set(paragraph, { ...config.animationSettings.from });
@@ -87,10 +102,23 @@ function Home() {
         },
       });
 
-      tl.to(section, { height: "auto", opacity: 1, duration: duration, ease: "power2.out" })
+      tl.to(section, {
+        height: "auto",
+        opacity: 1,
+        duration: duration,
+        ease: "power2.out",
+      })
         .to(paragraph, { ...config.animationSettings.to }, "<")
-        .to(chars, { opacity: 1, stagger: 0.02, duration: 0.6, ease: "power1.out" }, "<")
-        .to(section, { opacity: 0, duration: 1, ease: "power2.inOut" }, `+=${dynamicDelay}`);
+        .to(
+          chars,
+          { opacity: 1, stagger: 0.02, duration: 0.6, ease: "power1.out" },
+          "<"
+        )
+        .to(
+          section,
+          { opacity: 0, duration: 1, ease: "power2.inOut" },
+          `+=${dynamicDelay}`
+        );
 
       const trigger = ScrollTrigger.create({
         trigger: section,
@@ -119,17 +147,21 @@ function Home() {
 
         let targetY;
         if (isVisible[index] && sectionRefs.current[index]) {
-          targetY = sectionRefs.current[index].getBoundingClientRect().top + window.scrollY;
+          targetY =
+            sectionRefs.current[index].getBoundingClientRect().top +
+            window.scrollY;
         } else {
-          const section1Bottom = sections[index].getBoundingClientRect().bottom + window.scrollY;
-          const section2Top = sections[index + 1].getBoundingClientRect().top + window.scrollY;
+          const section1Bottom =
+            sections[index].getBoundingClientRect().bottom + window.scrollY;
+          const section2Top =
+            sections[index + 1].getBoundingClientRect().top + window.scrollY;
           targetY = (section1Bottom + section2Top) / 2;
         }
 
         button.style.position = "absolute";
         button.style.top = `${targetY}px`;
-        button.style.left = "50%";
-        button.style.transform = "translate(-50%, -50%)";
+        button.style.left = "10%";
+        button.style.transform = "translate(-10%, -50%)";
         button.style.zIndex = "10";
 
         // Animate button fade-in only the first time it appears
@@ -175,7 +207,12 @@ function Home() {
     });
 
     if (isVisible[index]) {
-      gsap.to(section, { opacity: 0, duration: 0.5, ease: "power2.inOut", onComplete: () => gsap.set(section, { display: "none" }) });
+      gsap.to(section, {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.inOut",
+        onComplete: () => gsap.set(section, { display: "none" }),
+      });
     } else {
       gsap.set(section, { display: "block" });
       gsap.to(section, { opacity: 1, duration: 0.5, ease: "power2.inOut" });
@@ -198,7 +235,8 @@ function Home() {
               key={lineIndex}
               style={{
                 display: "block",
-                marginBottom: lineIndex < text.split("\n").length - 1 ? "1rem" : "0",
+                marginBottom:
+                  lineIndex < text.split("\n").length - 1 ? "1rem" : "0",
               }}
             >
               {line.split(" ").map((word, wordIndex) => (
@@ -236,9 +274,13 @@ function Home() {
         <button
           ref={(el) => addToButtonRefs(el, 0)}
           onClick={() => toggleParagraph(0)}
-          className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:from-indigo-600 hover:to-purple-700 transition transform hover:scale-105"
+          className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold p-3 rounded-full shadow-lg hover:from-indigo-600 hover:to-purple-700 transition transform hover:scale-105 animate-pulse glow-bg"
         >
-          {isVisible[0] ? "Hide About Me" : "Show About Me"}
+          {isVisible[0] ? (
+            <ImShrink2 size={27} />
+          ) : (
+            <RiExpandDiagonalFill size={30} />
+          )}
         </button>
       )}
       {renderParagraph(aboutParagraphs[0], 0)}
@@ -251,9 +293,13 @@ function Home() {
         <button
           ref={(el) => addToButtonRefs(el, 1)}
           onClick={() => toggleParagraph(1)}
-          className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:from-indigo-600 hover:to-purple-700 transition transform hover:scale-105"
+          className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold p-3 rounded-full shadow-lg hover:from-indigo-600 hover:to-purple-700 transition transform hover:scale-105 animate-pulse glow-bg"
         >
-          {isVisible[1] ? "Hide Skills Info" : "Show Skills Info"}
+          {isVisible[1] ? (
+            <ImShrink2 size={27} />
+          ) : (
+            <RiExpandDiagonalFill size={30} />
+          )}
         </button>
       )}
       {renderParagraph(aboutParagraphs[1], 1)}
@@ -266,9 +312,13 @@ function Home() {
         <button
           ref={(el) => addToButtonRefs(el, 2)}
           onClick={() => toggleParagraph(2)}
-          className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:from-indigo-600 hover:to-purple-700 transition transform hover:scale-105"
+          className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold p-3 rounded-full shadow-lg hover:from-indigo-600 hover:to-purple-700 transition transform hover:scale-105 animate-pulse glow-bg"
         >
-          {isVisible[2] ? "Hide DSA Info" : "Show DSA Info"}
+          {isVisible[2] ? (
+            <ImShrink2 size={27} />
+          ) : (
+            <RiExpandDiagonalFill size={30} />
+          )}
         </button>
       )}
       {renderParagraph(aboutParagraphs[2], 2)}
@@ -284,7 +334,9 @@ function Home() {
         <p className="text-sm md:text-base">Ask anything about me</p>
       </div>
 
-      {isChatOpen && <Chat setIsChatOpen={setIsChatOpen} isChatOpen={isChatOpen} />}
+      {isChatOpen && (
+        <Chat setIsChatOpen={setIsChatOpen} isChatOpen={isChatOpen} />
+      )}
 
       <footer className="bg-gradient-to-r from-purple-500/90 to-indigo-600/90 dark:from-indigo-900/70 dark:to-pink-900/70 text-white font-semibold text-md italic dark:text-gray-200 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
