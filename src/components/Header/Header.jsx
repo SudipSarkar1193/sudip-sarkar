@@ -4,16 +4,17 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 const Header = ({ myFullName, isOnSamepage = true }) => {
-  const [isDarkMode, setIsDarkMode] = useState(
-    document.body.classList.contains("dark")
-  );
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
+    const root = document.documentElement;
     if (isDarkMode) {
-      document.body.classList.add("dark");
+      root.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
-      document.body.classList.remove("dark");
+      root.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   }, [isDarkMode]);
 
