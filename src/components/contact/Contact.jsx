@@ -4,7 +4,7 @@ export const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-5 bg-gradient-to-r from-purple-300/90 to-purple-600/90 dark:from-gray-900/70 dark:to-purple-900/70 text-gray-900/90 dark:text-gray-300"
+      className="py-14 bg-gradient-to-r from-purple-300/90 to-purple-600/90 dark:from-gray-900/70 dark:to-purple-900/70 text-gray-900/90 dark:text-gray-300"
     >
       <div className="max-w-5xl mx-auto px-6 sm:px-12 lg:px-16 text-center" >
         <h2 className="text-3xl font-bold italic ">Get in Touch</h2>
