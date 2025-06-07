@@ -328,7 +328,7 @@ function Home() {
       </div>
 
       <div
-        className="fixed bottom-6 right-6 bg-blue-500 dark:bg-blue-600 text-white p-4 rounded-full shadow-lg dark:shadow-gray-900/50 cursor-pointer hover:bg-blue-600 dark:hover:bg-blue-700 transition z-20 md:z-40 glow-bg2"
+        className="fixed bottom-6 right-6 bg-blue-500 dark:bg-blue-600 text-white p-4 rounded-full shadow-lg dark:shadow-gray-900/50 cursor-pointer hover:bg-blue-600 dark:hover:bg-blue-700 transition z-20 glow-bg2"
         onClick={() => setIsChatOpen(!isChatOpen)}
       >
         <p className="text-sm md:text-base">Ask anything about me</p>
