@@ -5,7 +5,7 @@ import { IoSend } from "react-icons/io5";
 import { FaRobot } from "react-icons/fa";
 import { IoMdPerson } from "react-icons/io";
 import { chatServer } from "./chatServer";
-
+const profilePic = "/icons/sudip01.jpg";
 
 const Chat = ({ isChatOpen, setIsChatOpen }) => {
   const [messages, setMessages] = useState([]);
@@ -113,13 +113,17 @@ const Chat = ({ isChatOpen, setIsChatOpen }) => {
   };
 
   return (
-    <div className="fixed top-16 bottom-0 w-full  flex items-center z-30 justify-end bg-black/50 dark:bg-black/70 backdrop-blur-sm md:p-4">
+    <div className="fixed inset-0 top-0 z-50 md:z-30 md:top-16 md:bottom-0 w-full  flex items-center  justify-end bg-black/50 dark:bg-black/70 backdrop-blur-sm md:p-4">
       <div className=" bg-white dark:bg-gray-900 w-full max-w-2xl md:h-[85vh] h-full z-50 rounded-none md:rounded-xl shadow-xl flex flex-col border border-gray-200 dark:border-gray-700 overflow-hidden transform transition-all duration-300 ease-in-out">
         {/* Chat Header */}
         <div className="bg-gradient-to-r from-blue-600 to-blue-700 dark:from-purple-800 dark:to-blue-900 text-white p-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="bg-white/20 p-2 rounded-full">
-              <FaRobot className="text-white text-xl" />
+            <div className="bg-white/20  rounded-full">
+              <img
+                src={profilePic}
+                alt="Profile Picture"
+                className="w-12 h-12  rounded-full border-4 border-white "
+              />
             </div>
             <div>
               <h3 className="text-lg font-semibold">Sudip</h3>
