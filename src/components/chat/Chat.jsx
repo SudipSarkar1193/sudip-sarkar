@@ -1,15 +1,33 @@
 import React, { useState, useEffect, useRef } from "react";
 import myDescription from "./sudip.json";
 import { ImCross } from "react-icons/im";
+import { IoSend } from "react-icons/io5";
+import { FaRobot } from "react-icons/fa";
+import { IoMdPerson } from "react-icons/io";
+import { chatServer } from "./chatServer";
 
 const Chat = ({ isChatOpen, setIsChatOpen }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [sessionId, setSessionId] = useState("");
   const messagesEndRef = useRef(null);
 
   const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
   const myFullName = "Sudip Sarkar";
+
+  // Initialize session_id on component mount
+  useEffect(() => {
+    const storedSessionId = localStorage.getItem("session_id");
+    if (!storedSessionId) {
+      const newSessionId = crypto.randomUUID();
+      localStorage.setItem("session_id", newSessionId);
+      setSessionId(newSessionId);
+    } else {
+      setSessionId(storedSessionId);
+    }
+    console.log("sessionId : ", sessionId);
+  }, []);
 
   useEffect(() => {
     if (isChatOpen && messages.length === 0) {
@@ -34,44 +52,22 @@ const Chat = ({ isChatOpen, setIsChatOpen }) => {
     setInput("");
     setIsTyping(true);
 
-    const chatHistory = messages
-      .slice(-5)
-      .map((msg) => `${msg.sender}: ${msg.text}`)
-      .join("\n");
-
-    const requestBody = {
-      contents: [
-        {
-          parts: [
-            {
-              text: `You are an AI version of me, designed to respond in a friendly, engaging manner. Below is my structured profile:
-    
-    ${JSON.stringify(myDescription)}
-    
-    Conversation so far:
-    ${chatHistory}
-
-    Now respond to: "${input}" in a natural and informative way.`,
-            },
-          ],
-        },
-      ],
-    };
-
     try {
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${GEMINI_API_KEY}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(requestBody),
-        }
-      );
+      const response = await fetch(`${chatServer}/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_message: input,
+          metadata: { session_id: sessionId },
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
       const data = await response.json();
-      const aiResponse =
-        data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-        "Oops, something went wrong!";
+      const aiResponse = data.response || "Oops, something went wrong!";
 
       setIsTyping(false);
       setMessages((prev) => [...prev, { text: aiResponse, sender: "ai" }]);
@@ -85,19 +81,62 @@ const Chat = ({ isChatOpen, setIsChatOpen }) => {
     }
   };
 
+  const formatResponse = (text) => {
+    // Convert markdown-like formatting to HTML
+    let formattedText = text
+      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") // Bold
+      .replace(/\*(.*?)\*/g, "<em>$1</em>") // Italic
+      .replace(/^# (.*$)/gm, "<h3>$1</h3>") // Headings
+      .replace(/^## (.*$)/gm, "<h4>$1</h4>") // Subheadings
+      .replace(/^### (.*$)/gm, "<h5>$1</h5>") // Sub-subheadings
+      .replace(/^\> (.*$)/gm, "<blockquote>$1</blockquote>") // Blockquotes
+      .replace(/\n/g, "<br>"); // Line breaks
+
+    // Handle lists
+    formattedText = formattedText.replace(/^\* (.*$)/gm, "<li>$1</li>");
+    formattedText = formattedText.replace(/<li>.*<\/li>/g, (match) => {
+      if (!formattedText.includes("<ul>")) {
+        return "<ul>" + match;
+      }
+      return match;
+    });
+    formattedText = formattedText.replace(/(<\/li>)(?!.*<li>)/, "$1</ul>");
+
+    // Handle code blocks
+    formattedText = formattedText.replace(
+      /```(\w*)\n([\s\S]*?)\n```/g,
+      '<pre><code class="language-$1">$2</code></pre>'
+    );
+
+    return { __html: formattedText };
+  };
+
   return (
-    <div className="fixed inset-0 flex items-center z-30 justify-end  md:p-4">
-      <div className="bg-white dark:bg-gray-800 w-full max-w-md md:h-[75vh] h-full z-50 rounded-lg shadow-2xl flex flex-col animate-fadeIn">
+    <div className="fixed inset-0 h-screen flex items-center z-30 justify-end bg-black/50 backdrop-blur-sm md:p-4">
+      <div className="bg-gray-900 w-full max-w-2xl md:h-[85vh] h-full z-50 rounded-none md:rounded-xl shadow-xl flex flex-col border border-gray-700 overflow-hidden transform transition-all duration-300 ease-in-out">
         {/* Chat Header */}
-        <div className="bg-blue-500 dark:bg-blue-600 text-white p-4 rounded-t-lg flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Chat with Sudip</h3>
-          <button onClick={() => setIsChatOpen(false)} className="">
-            <ImCross size={25} />
+        <div className="bg-gradient-to-r from-blue-800 to-blue-900 text-white p-4 flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <div className="bg-white/20 p-2 rounded-full">
+              <FaRobot className="text-white text-xl" />
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold">Gurudev AI Assistant</h3>
+              <p className="text-xs opacity-80">
+                {isTyping ? "Typing..." : "Online"}
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={() => setIsChatOpen(false)}
+            className="p-1 rounded-full hover:bg-white hover:bg-opacity-20 transition"
+          >
+            <ImCross size={16} />
           </button>
         </div>
 
         {/* Messages Area */}
-        <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-gray-100 dark:bg-gray-900">
+        <div className="flex-1 p-6 overflow-y-auto space-y-6 bg-gray-950">
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -106,23 +145,46 @@ const Chat = ({ isChatOpen, setIsChatOpen }) => {
               }`}
             >
               <div
-                className={`max-w-xs p-3 rounded-lg italic font-semibold dark:font-normal ${
+                className={`max-w-[90%] p-4 rounded-2xl ${
                   msg.sender === "user"
-                    ? "bg-blue-500 text-white dark:bg-blue-900"
-                    : "bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white"
+                    ? "bg-blue-600 text-white rounded-br-none"
+                    : "bg-gray-800 text-gray-100 rounded-bl-none shadow-sm border border-gray-700"
                 }`}
               >
-                {msg.text}
+                <div className="flex items-start space-x-3">
+                  {msg.sender === "ai" ? (
+                    <FaRobot className="text-blue-500 mt-1 flex-shrink-0" />
+                  ) : (
+                    <IoMdPerson className="text-blue-200 mt-1 flex-shrink-0" />
+                  )}
+                  <div
+                    className="prose prose-invert prose-sm max-w-none"
+                    dangerouslySetInnerHTML={formatResponse(msg.text)}
+                  />
+                </div>
               </div>
             </div>
           ))}
           {isTyping && (
             <div className="flex justify-start">
-              <div className="bg-gray-200 text-gray-800 max-w-xs p-3 rounded-lg flex items-center space-x-1">
-                <span>Typing</span>
-                <span className="animate-bounce delay-0">.</span>
-                <span className="animate-bounce delay-100">.</span>
-                <span className="animate-bounce delay-200">.</span>
+              <div className="max-w-[90%] p-4 rounded-2xl rounded-bl-none bg-gray-800 shadow-sm border border-gray-700">
+                <div className="flex items-center space-x-3">
+                  <FaRobot className="text-blue-500" />
+                  <div className="flex space-x-2">
+                    <div
+                      className="h-2 w-2 bg-gray-400 rounded-full animate-bounce"
+                      style={{ animationDelay: "0ms" }}
+                    />
+                    <div
+                      className="h-2 w-2 bg-gray-400 rounded-full animate-bounce"
+                      style={{ animationDelay: "150ms" }}
+                    />
+                    <div
+                      className="h-2 w-2 bg-gray-400 rounded-full animate-bounce"
+                      style={{ animationDelay: "300ms" }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           )}
@@ -130,21 +192,32 @@ const Chat = ({ isChatOpen, setIsChatOpen }) => {
         </div>
 
         {/* Input Area */}
-        <div className="p-4 border-t flex items-center space-x-2">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-            placeholder="Type a message..."
-            className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
-          />
-          <button
-            onClick={handleSendMessage}
-            className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition"
-          >
-            Send
-          </button>
+        <div className="p-4 border-t border-gray-800 bg-gray-900">
+          <div className="flex items-center space-x-2">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+              placeholder="Ask me anything..."
+              className="flex-1 p-3 border border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-500"
+            />
+            <button
+              onClick={handleSendMessage}
+              disabled={input.trim() === ""}
+              className={`p-3 rounded-xl ${
+                input.trim() === ""
+                  ? "bg-gray-700 cursor-not-allowed"
+                  : "bg-blue-600 hover:bg-blue-700"
+              } text-white transition-all duration-200 flex items-center justify-center`}
+            >
+              <IoSend className="text-lg" />
+            </button>
+          </div>
+          <p className="text-xs text-gray-500 mt-2 text-center">
+            Gurudev AI may produce inaccurate information. Verify critical
+            information.
+          </p>
         </div>
       </div>
     </div>

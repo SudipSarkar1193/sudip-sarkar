@@ -1,72 +1,103 @@
 {
-  "metadata": {
-    "summary": "My name is Sudip Sarkar (First Name: Sudip, Last Name: Sarkar). I am a Male . DOB: 07-MAY-2003 . Height 6 feet. I'm a passionate full-stack web developer with a strong focus on backend technologies, system design, and problem-solving. I love building scalable systems and working with high-performance programming languages."
-  },
-  "programming_languages": {
-    "C++": {
-      "proficiency": "Strong",
-      "use_case": "DSA and problem-solving",
-      "comment": "C++ is my go-to language for competitive programming—fast, efficient, and powerful!"
+    "metadata": {
+      "summary": "My name is Sudip Sarkar (First Name: Sudip, Last Name: Sarkar). I am a Male. DOB: 07-MAY-2003. Height 6 feet. I'm a passionate full-stack web developer with a strong focus on backend technologies, system design, and problem-solving. I love building scalable systems and working with high-performance programming languages."
     },
-    "Java": {
-      "proficiency": "Strong",
-      "use_case": "DSA and backend development",
-      "comment": "I have a solid grasp of Core Java, OOP, and multithreading."
+    "education": {
+        "degree": "B.Tech in Computer Science and Engineering",
+        "college": "Academy of Technology",
+        "location": "Adisaptagram, West Bengal",
+        "batch": "2022–2026",
+        "cgpa": 8.4
     },
-    "JavaScript": {
-      "proficiency": "Beginner level",
-      "use_case": "Full-stack web development (React & Node.js)",
-      "comment": "JavaScript is my playground! I use it extensively for dynamic and interactive web applications."
+    "programming_languages": {
+      "C++": {
+        "proficiency": "Strong",
+        "use_case": "DSA and problem-solving",
+        "comment": "C++ is my go-to language for competitive programming—fast, efficient, and powerful!"
+      },
+      "Java": {
+        "proficiency": "Strong",
+        "use_case": "DSA and backend development",
+        "comment": "I have a solid grasp of Core Java, OOP, and multithreading."
+      },
+      "JavaScript": {
+        "proficiency": "Beginner level",
+        "use_case": "Full-stack web development (React & Node.js)",
+        "comment": "JavaScript is my playground! I use it extensively for dynamic and interactive web applications."
+      },
+      "Python": {
+        "proficiency": "Medium",
+        "use_case": "DSA, scripting, and automation",
+        "comment": "I primarily use Python for DSA. It's my second favorite after C++, but I don’t use it for large-scale applications."
+      },
+      "Go": {
+        "proficiency": "Strong",
+        "use_case": "Backend development",
+        "comment": "Go is my top choice for building high-performance, scalable backend services. Simple, fast, and efficient!"
+      }
     },
-    "Python": {
-      "proficiency": "Medium",
-      "use_case": "DSA, scripting, and automation",
-      "comment": "I primarily use Python for DSA. It's my second favorite after C++, but I don’t use it for large-scale applications."
+    "web_development": {
+      "stack": "MERN (MongoDB, Express, React, Node.js)",
+      "experience": "I have built multiple full-stack applications using React for the frontend and Node.js for the backend.",
+      "comment": "I enjoy creating seamless user experiences with well-optimized APIs."
     },
-    "Go": {
-      "proficiency": "Strong",
-      "use_case": "Backend development",
-      "comment": "Go is my top choice for building high-performance, scalable backend services. Simple, fast, and efficient!"
+    "backend_knowledge": {
+      "databases": ["MongoDB", "MySQL", "PostgreSQL"],
+      "authentication": ["JWT", "Firebase", "Session-based"],
+      "caching": ["Redis", "In-memory caching"],
+      "scalability": ["Load balancing", "Connection pooling"],
+      "comment": "Backend development is my stronghold. I focus on building secure, scalable, and efficient APIs."
+    },
+    "hobbies": {
+      "Football": {
+        "passion_level": "High",
+        "comment": "I love playing and watching Football. It's the perfect way to refresh my mind!"
+      },
+      "coding": {
+        "passion_level": "High",
+        "comment": "Coding isn't just work for me; it's something I truly enjoy. Solving problems is both fun and rewarding!"
+      },
+      "cinema": {
+        "passion_level": "Super high",
+        "comment": "I love watching movies before sleep. A great story is always a win! My favorite directors: Satyajit Ray, Christopher Nolan (Who himself was insipired by Satyajit Ray). Favorite actors: Uttam Kumar, Soumitra Chatterjee."
+      }
+    },
+    "languages_spoken": {
+      "Bangla": {
+        "proficiency": "Native",
+        "comment": "Bangla is my mother tongue, and I speak it fluently."
+      },
+      "English": {
+        "proficiency": "Fluent",
+        "comment": "I can communicate well in English and am continuously improving."
+      },
+      "Hindi": {
+        "proficiency": "Fluent",
+        "comment": "I understand Hindi well but am not fluent in speaking."
+      }
+    },
+    "projects": [
+        {
+            "name": "AI-Powered Quiz Application (Try-Your-Gyan)",
+            "description": "A full-stack quiz app with AI-generated questions using React, Golang, Python, and PostgreSQL.",
+            "technologies": ["React", "Golang", "Python", "PostgreSQL", "LangChain"],
+            "achievements": "Improved question generation efficiency by 30%."
+        },
+        {
+            "name": "Social Media Application",
+            "description": "A social media platform with real-time features using Node.js, Express, and MongoDB.",
+            "technologies": ["React", "Node.js", "Express", "MongoDB"],
+            "achievements": "Increased user engagement by 20% with optimized APIs."
+        },
+        {
+            "name": "Parallel Merge Sort Implementation",
+            "description": "A multi-threaded Java application for sorting large datasets using parallel merge sort.",
+            "technologies": ["Java", "ExecutorService"],
+            "achievements": "Demonstrated performance improvements over sequential merge sort."
+        }
+    ],
+    "contact": {
+        "github": "https://github.com/SudipSarkar1193",
+        "linkedin": "https://linkedin.com/in/sudip-sarkar-267613302"
     }
-  },
-  "web_development": {
-    "stack": "MERN (MongoDB, Express, React, Node.js)",
-    "experience": "I have built multiple full-stack applications using React for the frontend and Node.js for the backend.",
-    "comment": "I enjoy creating seamless user experiences with well-optimized APIs."
-  },
-  "backend_knowledge": {
-    "databases": ["MongoDB", "MySQL", "PostgreSQL"],
-    "authentication": ["JWT", "Firebase", "Session-based"],
-    "caching": ["Redis", "In-memory caching"],
-    "scalability": ["Load balancing", "Connection pooling"],
-    "comment": "Backend development is my stronghold. I focus on building secure, scalable, and efficient APIs."
-  },
-  "hobbies": {
-    "Football": {
-      "passion_level": "High",
-      "comment": "I love playing and watching Football . It's the perfect way to refresh my mind!"
-    },
-    "coding": {
-      "passion_level": "High",
-      "comment": "Coding isn't just work for me; it's something I truly enjoy. Solving problems is both fun and rewarding!"
-    },
-    "cinema": {
-      "passion_level": "Super high",
-      "comment": "I love watching movies before sleep. A great story is always a win! My favorite directors: Satyajit Ray, Christopher Nolan (Who himself was insipired by Satyajit Ray). Favorite actors: Uttam Kumar, Soumitra Chatterjee."
-    }
-  },
-  "languages_spoken": {
-    "Bangla": {
-      "proficiency": "Native",
-      "comment": "Bangla is my mother tongue, and I speak it fluently."
-    },
-    "English": {
-      "proficiency": "Medium",
-      "comment": "I can communicate well in English and am continuously improving."
-    },
-    "Hindi": {
-      "proficiency": "Basic",
-      "comment": "I understand Hindi well but am not fluent in speaking."
-    }
-  }
 }

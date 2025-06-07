@@ -26,7 +26,7 @@ export const Contact = () => {
           </a>
 
           <a
-            href="https://linkedin.com/in/sudip"
+            href="https://linkedin.com/in/sudip-sarkar-267613302"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-gray-900/90 dark:text-gray-300  transition"
@@ -35,7 +35,7 @@ export const Contact = () => {
               <path d="M19 0h-14c-2.75 0-5 2.25-5 5v14c0 2.75 2.25 5 5 5h14c2.75 0 5-2.25 5-5v-14c0-2.75-2.25-5-5-5zm-11 18h-3v-9h3v9zm-1.5-10.3c-.97 0-1.75-.78-1.75-1.75s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.75-1.75 1.75zm13.5 10.3h-3v-4.5c0-1.1-.9-2-2-2s-2 .9-2 2v4.5h-3v-9h3v1.3c.71-1.01 1.87-1.8 3.13-1.8 2.35 0 4.37 2.02 4.37 4.5v5z" />
             </svg>
             <span className="text-lg font-medium text-gray-900/90 dark:text-gray-300">
-              linkedin.com/in/sudip
+              https://linkedin.com/in/sudip-sarkar
             </span>
           </a>
         </div>
