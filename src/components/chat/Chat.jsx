@@ -112,10 +112,10 @@ const Chat = ({ isChatOpen, setIsChatOpen }) => {
   };
 
   return (
-    <div className="fixed inset-0 h-screen flex items-center z-30 justify-end bg-black/50 backdrop-blur-sm md:p-4">
-      <div className="bg-gray-900 w-full max-w-2xl md:h-[85vh] h-full z-50 rounded-none md:rounded-xl shadow-xl flex flex-col border border-gray-700 overflow-hidden transform transition-all duration-300 ease-in-out">
+    <div className="fixed inset-0 h-screen flex items-center z-30 justify-end bg-black/50 dark:bg-black/70 backdrop-blur-sm md:p-4">
+      <div className="bg-white dark:bg-gray-900 w-full max-w-2xl md:h-[85vh] h-full z-50 rounded-none md:rounded-xl shadow-xl flex flex-col border border-gray-200 dark:border-gray-700 overflow-hidden transform transition-all duration-300 ease-in-out">
         {/* Chat Header */}
-        <div className="bg-gradient-to-r from-blue-800 to-blue-900 text-white p-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-800 dark:to-blue-900 text-white p-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-full">
               <FaRobot className="text-white text-xl" />
@@ -130,13 +130,14 @@ const Chat = ({ isChatOpen, setIsChatOpen }) => {
           <button
             onClick={() => setIsChatOpen(false)}
             className="p-1 rounded-full hover:bg-white hover:bg-opacity-20 transition"
+            aria-label="Close chat"
           >
             <ImCross size={16} />
           </button>
         </div>
 
         {/* Messages Area */}
-        <div className="flex-1 p-6 overflow-y-auto space-y-6 bg-gray-950">
+        <div className="flex-1 p-6 overflow-y-auto space-y-6 bg-gray-100 dark:bg-gray-950">
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -147,8 +148,8 @@ const Chat = ({ isChatOpen, setIsChatOpen }) => {
               <div
                 className={`max-w-[90%] p-4 rounded-2xl ${
                   msg.sender === "user"
-                    ? "bg-blue-600 text-white rounded-br-none"
-                    : "bg-gray-800 text-gray-100 rounded-bl-none shadow-sm border border-gray-700"
+                    ? "bg-blue-500 text-white rounded-br-none"
+                    : "bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-bl-none shadow-sm border border-gray-200 dark:border-gray-700"
                 }`}
               >
                 <div className="flex items-start space-x-3">
@@ -158,7 +159,7 @@ const Chat = ({ isChatOpen, setIsChatOpen }) => {
                     <IoMdPerson className="text-blue-200 mt-1 flex-shrink-0" />
                   )}
                   <div
-                    className="prose prose-invert prose-sm max-w-none"
+                    className="prose prose-sm max-w-none text-gray-900 dark:text-gray-100"
                     dangerouslySetInnerHTML={formatResponse(msg.text)}
                   />
                 </div>
@@ -167,7 +168,7 @@ const Chat = ({ isChatOpen, setIsChatOpen }) => {
           ))}
           {isTyping && (
             <div className="flex justify-start">
-              <div className="max-w-[90%] p-4 rounded-2xl rounded-bl-none bg-gray-800 shadow-sm border border-gray-700">
+              <div className="max-w-[90%] p-4 rounded-2xl rounded-bl-none bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center space-x-3">
                   <FaRobot className="text-blue-500" />
                   <div className="flex space-x-2">
@@ -192,7 +193,7 @@ const Chat = ({ isChatOpen, setIsChatOpen }) => {
         </div>
 
         {/* Input Area */}
-        <div className="p-4 border-t border-gray-800 bg-gray-900">
+        <div className="p-4 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
           <div className="flex items-center space-x-2">
             <input
               type="text"
@@ -200,21 +201,21 @@ const Chat = ({ isChatOpen, setIsChatOpen }) => {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
               placeholder="Ask me anything..."
-              className="flex-1 p-3 border border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-500"
+              className="flex-1 p-3 border border-gray-300 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500"
             />
             <button
               onClick={handleSendMessage}
               disabled={input.trim() === ""}
               className={`p-3 rounded-xl ${
                 input.trim() === ""
-                  ? "bg-gray-700 cursor-not-allowed"
-                  : "bg-blue-600 hover:bg-blue-700"
+                  ? "bg-gray-300 dark:bg-gray-700 cursor-not-allowed"
+                  : "bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
               } text-white transition-all duration-200 flex items-center justify-center`}
             >
               <IoSend className="text-lg" />
             </button>
           </div>
-          <p className="text-xs text-gray-500 mt-2 text-center">
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center">
             Gurudev AI may produce inaccurate information. Verify critical
             information.
           </p>
