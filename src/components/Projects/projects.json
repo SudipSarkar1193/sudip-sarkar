@@ -50,9 +50,10 @@
       "Firebase"
     ],
     "images": [
-      "/icons/try-your-gyan.png",
-      "/images/tryyourgyan-2.png",
-      "/images/tryyourgyan-3.png"
+      "/projects/tyg01.png",
+      "/projects/tyg02.png",
+      "/projects/tyg03.png",
+      "/projects/tyg04.png"
     ],
     "type": "personal"
   },

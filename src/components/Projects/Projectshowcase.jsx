@@ -21,9 +21,9 @@ const staggerChildren = {
 };
 
 const ProjectShowcase = () => {
-  const { projectId } = useParams();
-  const projectData = projectList[projectId];
-
+  const { projectTitle } = useParams();
+  const projectData = projectList.find(p => p.title === projectTitle);
+  
   // Scroll to top when the component mounts
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -153,7 +153,7 @@ const ProjectShowcase = () => {
                 <img
                   src={img}
                   alt={`Project screenshot ${index + 1}`}
-                  className="w-full h-64 object-cover"
+                  className="w-full h-auto object-contain"
                   loading="lazy"
                 />
               </motion.div>

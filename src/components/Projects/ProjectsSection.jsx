@@ -56,9 +56,7 @@ export default function ProjectsSection() {
             {personalProjects.map((project, index) => (
               <Link
                 key={index}
-                to={`/projects/${project.title
-                  .toLowerCase()
-                  .replace(/\s+/g, "-")}`}
+                to={`/projects/${project.title}`}
               >
                 <motion.div
                   variants={itemVariants}
