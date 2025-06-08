@@ -22,8 +22,8 @@ const staggerChildren = {
 
 const ProjectShowcase = () => {
   const { projectTitle } = useParams();
-  const projectData = projectList.find(p => p.title === projectTitle);
-  
+  const projectData = projectList.find((p) => p.title === projectTitle);
+
   // Scroll to top when the component mounts
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -72,7 +72,7 @@ const ProjectShowcase = () => {
               window.open(projectData.link, "_blank", "noopener,noreferrer");
             }}
           >
-            View Live Demo
+            {`${projectData.liveDemo ? "View Live Demo" : "Github"}`}
           </motion.button>
         </div>
       </motion.section>

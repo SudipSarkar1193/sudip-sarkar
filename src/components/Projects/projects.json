@@ -3,7 +3,7 @@
     "title": "Movie Ticket Booking System",
     "tagline": "Streamlined Movie Ticket Reservations",
     "description": "A console-based Java application mimicking BookMyShow, allowing users to select theatres, shows, and seats with a layered architecture for robust ticket booking.",
-    "link": "https://github.com/your-profile/movie-ticket-booking",
+    "link": "https://github.com/SudipSarkar1193/BookMyShow",
     "features": [
       "Layered architecture with models (Movie, Theatre, Show, Booking), services, and controllers",
       "User-driven theatre and show selection with seat booking",
@@ -12,7 +12,8 @@
     ],
     "techStack": ["Java", "Maven", "OOP"],
     "images": [],
-    "type": "personal"
+    "type": "personal",
+    "liveDemo":false
   },
   {
     "title": "Parallel Merge Sort Implementation",
@@ -27,7 +28,8 @@
     ],
     "techStack": ["Java", "ExecutorService", "OOP"],
     "images": [],
-    "type": "personal"
+    "type": "personal",
+    "liveDemo":false
   },
   {
     "title": "Try-Your-Gyan",
@@ -55,7 +57,8 @@
       "/projects/tyg03.png",
       "/projects/tyg04.png"
     ],
-    "type": "personal"
+    "type": "personal",
+    "liveDemo":true
   },
   {
     "title": "Social Media Application",
@@ -71,6 +74,7 @@
     ],
     "techStack": ["React", "Node.js", "Express", "MongoDB"],
     "images": [],
-    "type": "personal"
+    "type": "personal",
+    "liveDemo":true
   }
 ]
