@@ -115,7 +115,16 @@ const Header = ({ myFullName, isOnSamepage = true }) => {
           ].map((link) => (
             <li key={link.name}>
               <button
-                onClick={() => handleScroll(link.id)}
+                onClick={() => {
+                  if (!isOnSamepage) {
+                    setTimeout(() => {
+                      handleScroll(link.id);
+                    }, 1300);
+                    navigate("/");
+                  } else {
+                    handleScroll(link.id);
+                  }
+                }}
                 className="text-gray-600 dark:text-gray-300 font-semibold text-2xl hover:text-blue-500 dark:hover:text-blue-400 transition block"
               >
                 {link.name}
