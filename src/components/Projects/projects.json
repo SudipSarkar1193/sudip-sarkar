@@ -13,13 +13,13 @@
     "techStack": ["Java", "Maven", "OOP"],
     "images": [],
     "type": "personal",
-    "liveDemo":false
+    "liveDemo": false
   },
   {
     "title": "Parallel Merge Sort Implementation",
     "tagline": "High-Performance Sorting",
     "description": "A Java application comparing parallel and sequential Merge Sort algorithms, using multi-threading to optimize performance on large datasets.",
-    "link": "https://github.com/your-profile/parallel-merge-sort",
+    "link": "https://github.com/SudipSarkar1193/ParallelMergeSort",
     "features": [
       "Modular design with separate packages for sorters, utilities, and app logic",
       "ExecutorService for parallelizing subarray sorting",
@@ -29,7 +29,7 @@
     "techStack": ["Java", "ExecutorService", "OOP"],
     "images": [],
     "type": "personal",
-    "liveDemo":false
+    "liveDemo": false
   },
   {
     "title": "Try-Your-Gyan",
@@ -58,13 +58,13 @@
       "/projects/tyg04.png"
     ],
     "type": "personal",
-    "liveDemo":true
+    "liveDemo": true
   },
   {
     "title": "Social Media Application",
     "tagline": "Connect and Share Seamlessly",
     "description": "A full-stack MERN social media platform with real-time notifications, post creation, commenting, and user authentication.",
-    "link": "https://social-media-app.vercel.app",
+    "link": "https://xplore-frontend-brown.vercel.app",
     "features": [
       "User registration with email verification",
       "Text and image post creation with commenting",
@@ -73,8 +73,13 @@
       "Optimized backend APIs for data handling"
     ],
     "techStack": ["React", "Node.js", "Express", "MongoDB"],
-    "images": [],
+    "images": [
+      "/projects/sma01.png",
+      "/projects/sma002.png",
+      "/projects/sma02.png",
+      "/projects/sma03.png"
+    ],
     "type": "personal",
-    "liveDemo":true
+    "liveDemo": true
   }
 ]
