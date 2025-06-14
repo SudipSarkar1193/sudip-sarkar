@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import projectList from "./projects.json";
 import Header from "../Header/Header";
 
@@ -20,14 +20,89 @@ const staggerChildren = {
   },
 };
 
+// Modal animation variants
+const modalVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { 
+      duration: 0.3,
+      ease: "easeOut"
+    }
+  },
+  exit: { 
+    opacity: 0, 
+    scale: 0.8,
+    transition: { 
+      duration: 0.2 
+    }
+  }
+};
+
+const overlayVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+  exit: { opacity: 0 }
+};
+
 const ProjectShowcase = () => {
   const { projectTitle } = useParams();
   const projectData = projectList.find((p) => p.title === projectTitle);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   // Scroll to top when the component mounts
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
+  // Handle escape key to close modal
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedImage(null);
+      }
+    };
+
+    if (selectedImage) {
+      document.addEventListener('keydown', handleEscape);
+      // Prevent body scroll when modal is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedImage]);
+
+  const openModal = (image, index) => {
+    setSelectedImage({ src: image, index });
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
+
+  const navigateImage = (direction) => {
+    if (!selectedImage) return;
+    
+    const currentIndex = selectedImage.index;
+    let newIndex;
+    
+    if (direction === 'next') {
+      newIndex = (currentIndex + 1) % projectData.images.length;
+    } else {
+      newIndex = currentIndex === 0 ? projectData.images.length - 1 : currentIndex - 1;
+    }
+    
+    setSelectedImage({
+      src: projectData.images[newIndex],
+      index: newIndex
+    });
+  };
 
   if (!projectData) {
     return (
@@ -148,7 +223,8 @@ const ProjectShowcase = () => {
                 key={index}
                 variants={fadeIn}
                 whileHover={{ scale: 1.03 }}
-                className="overflow-hidden rounded-lg shadow-lg"
+                className="overflow-hidden rounded-lg shadow-lg cursor-pointer"
+                onClick={() => openModal(img, index)}
               >
                 <img
                   src={img}
@@ -161,6 +237,83 @@ const ProjectShowcase = () => {
           </div>
         </div>
       </motion.section>
+
+      {/* Image Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            variants={overlayVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            {/* Backdrop */}
+            <motion.div
+              className="absolute inset-0 bg-black bg-opacity-80"
+              onClick={closeModal}
+            />
+            
+            {/* Modal Content */}
+            <motion.div
+              className="relative max-w-4xl max-h-full bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-2xl"
+              variants={modalVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              {/* Close Button */}
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 z-10 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 transition-all duration-200"
+                aria-label="Close modal"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Navigation Buttons */}
+              {projectData.images.length > 1 && (
+                <>
+                  <button
+                    onClick={() => navigateImage('prev')}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 transition-all duration-200"
+                    aria-label="Previous image"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => navigateImage('next')}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 transition-all duration-200"
+                    aria-label="Next image"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </>
+              )}
+
+              {/* Image */}
+              <img
+                src={selectedImage.src}
+                alt={`Project screenshot ${selectedImage.index + 1}`}
+                className="w-full h-auto max-h-[80vh] object-contain"
+              />
+
+              {/* Image Counter */}
+              {projectData.images.length > 1 && (
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
+                  {selectedImage.index + 1} / {projectData.images.length}
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-8 px-4">
