@@ -29,7 +29,7 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="py-20 bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900"
+      className="py-20 bg-gradient-to-b from-gray-100/50 to-gray-200/50 dark:from-gray-800/50 dark:to-gray-900/50"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}

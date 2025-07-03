@@ -10,6 +10,7 @@ import Herosection from "../Herosection/Herosection";
 import { Contact } from "../contact/Contact";
 import { RiExpandDiagonalFill } from "react-icons/ri";
 import { ImShrink2 } from "react-icons/im";
+import Resume from "../resume/Resume";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,7 +33,9 @@ function Home() {
 
   const aboutParagraphs = [
     "I'm Sudip Sarkar, a third-year Computer Science undergraduate at the Academy of Technology, deeply passionate about backend development and system design.",
+
     "I specialize in Golang, drawn by its performance and robust concurrency support. I'm also proficient in JavaScript and work extensively with databases such as MongoDB, PostgreSQL, and SQL.\n While I have experience with frontend technologies like React and Tailwind CSS, my primary focus remains on building scalable and efficient backend systems.\n I'm currently exploring AI integration using tools like LangChain to develop intelligent backend solutions.",
+
     "I'm highly enthusiastic about DSA and problem solving.\n For DSA, I use primarily C++, but I also use Java and Python.",
   ];
 
@@ -304,6 +307,8 @@ function Home() {
       )}
       {renderParagraph(aboutParagraphs[1], 1)}
 
+      
+
       <div ref={(el) => addToWrapperRefs(el, 2)} className="projects">
         <ProjectsSection />
       </div>
@@ -322,10 +327,13 @@ function Home() {
         </button>
       )}
       {renderParagraph(aboutParagraphs[2], 2)}
+      
 
       <div ref={(el) => addToWrapperRefs(el, 3)} className="contact">
-        <Contact />
+        <Resume />
       </div>
+
+      <Contact />
 
       <div
         className="fixed bottom-6 right-6 bg-blue-500 dark:bg-blue-600 text-white p-4 rounded-full shadow-lg dark:shadow-gray-900/50 cursor-pointer hover:bg-blue-600 dark:hover:bg-blue-700 transition z-20 glow-bg2"
