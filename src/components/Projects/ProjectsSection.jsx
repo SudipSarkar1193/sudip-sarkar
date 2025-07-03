@@ -29,18 +29,17 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="py-20 bg-gradient-to-b from-gray-100/50 to-gray-200/50 dark:from-gray-800/50 dark:to-gray-900/50"
+      className="py-20 bg-gradient-to-b from-gray-100/50 to-gray-200/50 dark:from-gray-800/50 dark:to-gray-900/50 transition-all duration-900"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <motion.h3
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-extrabold text-gray-800 dark:text-gray-100 mb-12 text-center tracking-tight"
-        >
-          My Projects
-        </motion.h3>
+        <div className="text-center">
+          <h2
+            className={`text-4xl md:text-4xl lg:text-5xl pb-2 font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent mb-4 transition-colors duration-1000`}
+          >
+            My Projects
+          </h2>
+        </div>
 
         {/* Personal Projects Section */}
         <motion.div
@@ -54,10 +53,7 @@ export default function ProjectsSection() {
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {personalProjects.map((project, index) => (
-              <Link
-                key={index}
-                to={`/projects/${project.title}`}
-              >
+              <Link key={index} to={`/projects/${project.title}`}>
                 <motion.div
                   variants={itemVariants}
                   whileHover={{
@@ -65,7 +61,10 @@ export default function ProjectsSection() {
                     boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.1)",
                   }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-gray-200 to-blue-100 dark:bg-gradient-to-r dark:from-gray-950 dark:to-black p-4 rounded-xl shadow-md dark:shadow-gray-900/50 flex flex-col items-center text-center min-h-[250px] transition-all duration-300 hover:brightness-105 dark:hover:brightness-110"
+                  className={`bg-gradient-to-r from-gray-200 to-blue-100 dark:bg-gradient-to-r dark:from-gray-950 dark:to-black p-4 rounded-xl shadow-md dark:shadow-gray-900/50 flex flex-col items-center text-center min-h-[250px] transition-colors duration-300 hover:brightness-105 dark:hover:brightness-110 cursor-pointer`}
+                  style={{
+                    transitionDuration: `${300 + index * 500}ms`, // Each card transitions at different speed
+                  }}
                 >
                   {project.images && project.images.length > 0 ? (
                     <div className="w-full mb-3">
@@ -119,8 +118,11 @@ export default function ProjectsSection() {
                     dark:bg-gradient-to-r dark:from-gray-950 dark:to-black 
                     p-6 rounded-xl shadow-md dark:shadow-gray-900/50 
                     flex flex-col items-center text-center 
-                    transition-all duration-300 
+                    transition-colors  
                     hover:brightness-105 dark:hover:brightness-110"
+                    style={{
+                    transitionDuration: `${300 + index * 500}ms`, // Each card transitions at different speed
+                  }}
                   >
                     {project.images && project.images.length > 0 ? (
                       <img
