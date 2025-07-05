@@ -88,15 +88,15 @@ const Resume = () => {
   };
 
   const handleDownload = () => {
-    const resumeUrl = "public/Resume__Sudip_Sarkar_.pdf";
+    const resumeUrl = "/Resume__Sudip_Sarkar_.pdf" ;
     const link = document.createElement("a");
     link.href = resumeUrl;
-    link.download = "Sudip_Sarkar_Resume.pdf";
-    link.click();
+    link.download = "Sudip_Sarkar_Resume.pdf" ;
+    link.click(); 
   };
 
   const handleView = () => {
-    const resumeUrl = "public/Resume__Sudip_Sarkar_.pdf";
+    const resumeUrl = "/Resume__Sudip_Sarkar_.pdf";
     window.open(resumeUrl, "_blank");
   };
 
